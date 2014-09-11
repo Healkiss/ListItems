@@ -1,0 +1,149 @@
+<!-- FILTERS -->	
+<div class="accordion" id="accordion1">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+
+            <!-- DROPDOWN FILTERS -->	
+			<div class="accordion-heading">
+				<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" href="#collapse_1" >
+					<i class="icon-angle-down"></i>
+					Filtres
+				</a>
+			</div>
+
+            <!-- SEARCH INPUT -->	
+            <div>
+                <input type="text" name="search" placeholder="Rechercher un article" class="cl-list-search m-wrap">
+                <button type="submit" class="cl-list-search-btn btn black"><i class="icon-search"></i></button>
+			</div>
+		</div>
+
+        <!-- ACCORDION -->	
+		<div id="collapse_1" class="accordion-body collapse">
+			<div class="accordion-inner">
+                <!-- CATEGORIES FILTER -->
+                <strong>Catégories</strong>
+                <div class="space10"></div>
+                <div class="container-fluid">
+                    {% for category in categories %}
+                        <label class="span3">
+                            <input type="checkbox" class="cl-list-filter" 
+                                data-checkbox-group="category"
+                                data-value={{ category.id }} />
+                            {{ category.name}}
+                        </label>
+                    {% endfor %}
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--END FILTERS-->				
+<!--TABS-->
+<div class="tabbable tabbable-custom tabbable-full-width">
+	<ul class="cl-tabs nav nav-tabs">
+
+        {% for category in categories %}
+            <li {% if loop.index == 1 %} class="active" {% endif %}
+                data-filter-id="{{category.id}}" 
+                data-filter-type="category">
+                <a href="#" data-toggle="tab">{{category.name}}</a>
+            </li>
+        {% endfor %}
+        <li data-filter-type="all">
+            <a href="#" data-toggle="tab">All</a>
+        </li>
+	</ul>
+</div>
+
+<div class="space15"></div>
+    <!-- ARTICLES LIST -->
+    <div id="articles-list" class="row-fluid"
+        data-itemtype="article" 
+        data-url= "{{ path('get_articles') }}">
+        <div class="content hidden">
+            <div class="span4">
+                <div class="dashboard-stat blue media">                    
+                    <div class="news-blocks">
+                        <h3><a data-bind='title' href="page_news_item.html">Sias excepturi sint occae</a></h3>
+                        <div class="news-block-tags">
+                            <a data-bind='publisher'>Jean Valjean</a>
+                            <em data-bind='postDate'>tomorow</em>
+                        </div>
+                        <p><img data-bind='image' class="news-block-img pull-right" src="{{asset('xxxx/xxxxx/img/News.png'|web_url('thumb'))}}" alt=""><span data-bind='description'>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</span></p>
+                        <a  data-bind='more' href="" class="news-block-btn link">
+                        Lire la suite
+                        <i class="m-icon-swapright m-icon-black"></i>                              
+                        </a>                          
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="wait hidden">
+        <i class="icon-spinner icon-spin icon-4x" style="margin-left: 47%;"></i> 
+    </div>
+</div>
+    <div id="page-selection">
+</div>
+<script type="text/javascript">
+    f = function() {
+        //items per page
+        var nbElementPerPage = "{{nbElementPerPage}}";
+        var offset = 0;
+        //number of number of page displayed on the carroussel
+        var maxPageVisible = 10;
+        var entity = new Campuslive.listItems({ 
+            listNode: $("#{{ node }}"),
+            initFilter: {
+                'page' : '',
+                'max' : "{{nbElementPerPage}}",
+                'offset': 0,
+                'tab': {
+                    type: "{{parentType}}",
+                    id: {{parentId}}
+                },
+                'checkbox': {}
+            },
+        });
+        entity.setTabsClicks();
+        entity.setSelectFilter();
+        entity.setCheckboxClicks();
+        entity.setSearch();
+        entity.list();
+
+        var currPage = 1;
+        $('#page-selection').bootpag({
+            total: 1,
+            page: 1,
+            maxVisible: maxPageVisible
+        }).on("page", function(event, num){
+            currPage = num;
+            event.preventDefault();
+        });
+
+        var pageClicked = 1;
+        var num = pageClicked;
+        var nextElement = 'ul.bootpag li:last';
+        var prevElement = 'ul.bootpag li:first';
+
+        function isInt(n) {
+           return n % 1 === 0;
+        }
+        $(document).on('click', 'ul.bootpag li a', function(){
+            var self = this;
+            pageClicked = self.text;
+            if(isInt(pageClicked))
+                num = Number(pageClicked);
+            if(pageClicked == "»"){
+                num = currPage;
+            }
+            if(pageClicked == "«"){
+                num = currPage;
+            }
+            offset = num - 1 ;
+            entity.filter['offset'] = offset * nbElementPerPage;
+            entity.list();
+        });
+    };
+    window.addEventListener('load', f, false);
+</script>
