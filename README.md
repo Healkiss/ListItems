@@ -9,8 +9,7 @@ Allow to use jquery render easily.
 
 USE:
 
-Install http://botmonster.com/jquery-bootpag/#.VBGuVmB_tcY (fixes are included in the files template.js)
-Follow setup and 
+If you want the pagination, install http://botmonster.com/jquery-bootpag/#.VBGuVmB_tcY (fixes are included in the files template.js)
 
 
 SETUP:
@@ -49,9 +48,9 @@ publisher: {
 
 USE :
 ```javascript
-entity.setTabsClicks();
-entity.setSelectFilter();
-entity.setCheckboxClicks();
-entity.setSearch();
+entity.setTabsClicks(); //if you need tabs
+entity.setSelectFilter(); //if you need filters
+entity.setCheckboxClicks(); //if you need checkbox
+entity.setSearch(); //if you need search bar
 entity.list();
 ```
