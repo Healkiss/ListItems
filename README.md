@@ -14,7 +14,7 @@ If you want the pagination, install http://botmonster.com/jquery-bootpag/#.VBGuV
 
 SETUP:
 
-Add an id a data-itemtype and a data-url in the main DIV
+Add an id, a data-itemtype and a data-url in the main DIV
 ```html
 <div  id="articles-list"
       data-itemtype="article" 
@@ -45,6 +45,8 @@ publisher: {
     href: function(params) { return this.publisherPath; },
 },
 ```
+
+The url need to return a Json(phpArray).
 
 USE :
 ```javascript
