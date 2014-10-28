@@ -10,7 +10,6 @@ var Singleton = (function($, Singleton) {
         this.url = options.listNode.data("url");
         this.filter = options.initFilter;
         this.max = options.max;
-        this.likeManager = options.likeManager;
         switch (options.listNode.data("itemtype")) {
             case "article":
                 this.displayList = this.displayArticles;
