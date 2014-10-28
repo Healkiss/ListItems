@@ -1,12 +1,12 @@
-{ 
-	"name" : "healkiss/listitems",
-	"description" : "Allow to use jquery render easily. With a bit php you can use search, filter and pagination. Js is provided in the library",
-	"version": "0.1.0",
+{
+    "name" : "healkiss/listitems",
+    "description" : "Allow to use jquery render easily. With a bit php you can use search, filter and pagination. Js is provided in the library",
+    "version": "0.1.0",
     "type": "library",
     "license" : [
-		"MIT"
-	],
-	"authors": [
+        "MIT"
+    ],
+    "authors": [
         {
             "name": "François SCHNEIDER",
             "email": "full-autof@hotmail.fr",
@@ -14,19 +14,19 @@
             "role": "Developer"
         }
     ],
-	"require" : {
-		"php" : ">=5.3.3"
-	},
-	"autoload" : {
-		"psr-0" : {
-			"" : "src/"
-		}
-	},
-	"config" : {
-		"bin-dir" : "bin"
-	},
-	"scripts" : {
-	},
-	"extra" : {
-	}
+    "require" : {
+        "php" : ">=5.3.3"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "" : "src/"
+        }
+    },
+    "config" : {
+        "bin-dir" : "bin"
+    },
+    "scripts" : {
+    },
+    "extra" : {
+    }
 }
