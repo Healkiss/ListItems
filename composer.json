@@ -1,7 +1,7 @@
 { 
 	"name" : "ListItems",
 	"description" : "Allow to use jquery render easily. With a bit php you can use search, filter and pagination. Js is provided in the library",
-	"version": "0.3.0",
+	"version": "0.1.0",
     "type": "library",
     "license" : [
 		"MIT"
