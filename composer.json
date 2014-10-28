@@ -22,7 +22,6 @@
 			"" : "src/"
 		}
 	},
-	"minimum-stability" : "stable",
 	"config" : {
 		"bin-dir" : "bin"
 	},
